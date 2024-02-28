@@ -1,0 +1,5 @@
+hvplot 
+nbblack 
+jupyterlab 
+ipdb 
+flake8
