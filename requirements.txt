@@ -1,3 +1,9 @@
+mlx 
+mlx-lm 
+numpy 
+scikit-learn
+
+# install the package in editable mode
 # local package
 -e .
 

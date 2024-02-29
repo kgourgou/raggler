@@ -16,10 +16,12 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
-## Install Python Dependencies
-requirements:
+install_develop: 
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+	$(PYTHON_INTERPRETER) -m pip install -e .
+
+install: 
+	$(PYTHON_INTERPRETER) -m pip install .
 
 
 ## Delete all compiled Python files
@@ -29,7 +31,7 @@ clean:
 
 ## Lint using flake8
 lint:
-	flake8 src
+	ruff src
 
 ## Set up python interpreter environment
 create_environment:
