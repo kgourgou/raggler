@@ -107,7 +107,6 @@ class RAG:
     ):
         self.embedder = embedder
         self.index = index
-        self.content = index.content
         self.language_model = language_model
 
     def retrieve(self, query: str, k: int = 2):
@@ -119,7 +118,7 @@ class RAG:
 
         return distances, list(indices.flatten())
 
-    def __call__(self, query: str, k: int = 2, print_context: bool = False):
+    def __call__(self, query: str, k: int = 2, show_context: bool = False):
         """
         Retrieve the most similar documents to the given query,
         concatenate them to a single string, then generate a response
@@ -128,16 +127,16 @@ class RAG:
         Args:
             query: The query to retrieve and generate a response for.
             k: The number of documents to retrieve.
-            print_context: Whether to print the context.
+            show_context: Whether to print the context.
 
         Returns:
             str: The response from the language model.
         """
 
         _, indices = self.retrieve(query, k)
-        context = " ".join([self.content[i] for i in indices])
+        context = " ".join([self.index.content[i] for i in indices])
 
-        if print_context:
+        if show_context:
             sep = "-" * 100
             print(f"context: {context}\n{sep}\n")
 

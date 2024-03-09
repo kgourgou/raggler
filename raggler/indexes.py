@@ -30,7 +30,7 @@ class NPIndex(BaseIndex):
         self.index = vectors
         self.content = content
 
-    def save(self, path_to_save_index):
+    def save(self, path_to_save_index: str):
         """
         Save the index to the given path.
         """
@@ -41,7 +41,7 @@ class NPIndex(BaseIndex):
         with open(path_to_save_index + "content.pk", "wb") as f:
             pickle.dump(self.content, f)
 
-    def load(self, path_to_index):
+    def load(self, path_to_index: str):
         """
         Load the index from the given path.
         """

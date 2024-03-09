@@ -1,5 +1,5 @@
-mlx 
-mlx-lm 
+mlx==0.6.0 
+mlx-lm==0.1.0
 numpy 
 scikit-learn
 sentence_transformers
