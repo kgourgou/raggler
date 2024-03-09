@@ -27,7 +27,9 @@ class MLXLLM(BaseLLM):
         Args:
             model_name (str): The name of the model to use.
             prompt_template (str): The prompt_template to use when querying the language model. Should contain a {context} and a {text} placeholder. If not provided, a default template will be used.
-            cache_model (bool): Whether to cache the model. Defaults to True. Will cache in the current directory under data/models
+            cache_model (bool): Whether to cache the model. Defaults to True. Will cache in the current directory under data/models.
+
+        TODO: Caching needs a bit of tidying up.
         """
         self.model = None
         self.tokenizer = None
@@ -45,7 +47,7 @@ class MLXLLM(BaseLLM):
             with open(model_path / "tokenizer.pkl", "rb") as f:
                 self.tokenizer = pickle.load(f)
         else:
-            logger.info(f"Loading model from HuggingFace. This may take a while.")
+            logger.info("Loading model from HuggingFace. This may take a while.")
             self.model, self.tokenizer = load(model_name)
             if cache_model:
                 os.makedirs(model_path, exist_ok=True)
