@@ -1,5 +1,5 @@
 """
-Pipeline for retrieval augmented generation. 
+Pipeline for retrieval augmented generation.
 """
 
 import logging
@@ -62,7 +62,7 @@ def create_index(
             followlinks=True,
         ):
             logger.info(f'Processing directory: "{root}"')
-            for file in files:
+            for file in tqdm(files, desc="Looking into files ..."):
                 file_path = os.path.join(root, file)
                 logger.info(f"Processing: {file_path}")
 
@@ -74,7 +74,13 @@ def create_index(
                     logger.info("We can process this file.")
                     sentences = loader(file_path).load_and_split(text_splitter)
                     content = [x.page_content for x in sentences]
+
+                    if len(content) == 0:
+                        logger.warning(f"No content in {file_path}")
+                        continue
+
                     vectors = embedder.encode(content)
+
                     logger.debug("embeddings: ", vectors.shape)
 
                     all_content += content

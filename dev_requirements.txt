@@ -1,3 +1,7 @@
 ipdb
 jupyterlab
+ipython
 ruff
+pytest 
+pytest-cov
+ipywidgets

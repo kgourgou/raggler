@@ -1,9 +1,11 @@
-""" 
-TODO: This won't work as is, need to fix the retrieve method, and test
-the load / save methods.
+"""
+TODO: This won't work as is, need to fix the retrieve method, and test the load / save methods.
+
+When ready to fix, add faiss to the requirements.txt file.
 """
 
 import faiss
+import pickle
 from raggler.base_classes.base_classes import BaseIndex
 
 
@@ -37,8 +39,14 @@ class FAISSIndex(BaseIndex):
         with open(path_to_index + "content.pk", "rb") as f:
             self.content = pickle.load(f)
 
-    def retrieve(self, query_embedding, k):
+    def retrieve(self, query_embedding, k: int = 2):
         """
         Retrieve the most similar documents to the given query.
+
+        Args:
+            query_embedding: The query to retrieve the most similar documents to.
+            k: The number of documents to retrieve.
+
+        Should return the distances and indices of the k most similar documents.
         """
-        raise NotImplementedError
+        raise NotImplementedError("Sorry, this method is not implemented yet.")
