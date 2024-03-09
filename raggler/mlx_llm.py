@@ -1,5 +1,6 @@
-from mlx_lm import generate, load
 import os
+
+from mlx_lm import generate, load
 
 from .base_classes.base_classes import BaseLLM
 

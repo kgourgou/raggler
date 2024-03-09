@@ -5,7 +5,6 @@ Pipeline for retrieval augmented generation.
 import logging
 import os
 
-import faiss
 import numpy as np
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader, TextLoader
@@ -30,28 +29,29 @@ def create_index(
     paths_to_directories: list[str],
     embedder: SentenceTransformer,
     path_to_save_index: str = None,
+    index=NPIndex(),
 ) -> tuple[NPIndex, list[str]]:
     """
-    Create an NPIndex wit content from each file in the given directories
+    Create an NPIndex with content from each file in the given directories
     and embeddings from the given embedder.
 
     Args:
         paths_to_directories: List of paths to directories containing files.
         embedder: SentenceTransformer model to use for embedding.
         path_to_save_index: str, self-explanatory and optional.
+        index: the index class to use to store embeddings and content.
 
     Returns:
-        index
+        The updated index.
     """
 
     assert isinstance(
         paths_to_directories, list
     ), "paths_to_directories should be a list"
 
-    print("paths_to_directories", paths_to_directories)
+    logger.info("paths_to_directories", paths_to_directories)
 
     text_splitter = RecursiveCharacterTextSplitter()
-    index = NPIndex()
 
     all_content = []
     all_vectors = []
@@ -61,17 +61,17 @@ def create_index(
             topdown=True,
             followlinks=True,
         ):
-            print(f'Processing directory: "{root}"')
+            logger.info(f'Processing directory: "{root}"')
             for file in files:
                 file_path = os.path.join(root, file)
-                print(f"Processing: {file_path}")
+                logger.info(f"Processing: {file_path}")
 
                 _, ext = os.path.splitext(file_path)
-                print(f"Extension: {ext}")
+                logger.info(f"Extension: {ext}")
 
                 loader = EXT_TO_LOADER.get(ext)
                 if loader:
-                    print("We can process this file.")
+                    logger.info("We can process this file.")
                     sentences = loader(file_path).load_and_split(text_splitter)
                     content = [x.page_content for x in sentences]
                     vectors = embedder.encode(content)
@@ -88,14 +88,6 @@ def create_index(
         index.save(path_to_save_index)
 
     return index
-
-
-def load_index(path_to_index: str):
-    """
-    Load the FAISS index from the given path.
-    """
-    faiss_index = faiss.read_index(path_to_index)
-    return faiss_index
 
 
 class RAG:
@@ -122,13 +114,23 @@ class RAG:
     def __call__(self, query: str, k: int = 2, print_context: bool = False):
         """
         Retrieve the most similar documents to the given query,
-        concatenate them to a single string, then generate a response using the language model.
+        concatenate them to a single string, then generate a response
+          using the language model.
+
+        Args:
+            query: The query to retrieve and generate a response for.
+            k: The number of documents to retrieve.
+            print_context: Whether to print the context.
+
+        Returns:
+            str: The response from the language model.
         """
 
         _, indices = self.retrieve(query, k)
         context = " ".join([self.content[i] for i in indices])
 
         if print_context:
-            print(f"context: {context}")
+            sep = "-" * 100
+            print(f"context: {context}\n{sep}\n")
 
         return self.language_model(context=context, question=query)
