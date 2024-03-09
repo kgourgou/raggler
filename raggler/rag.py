@@ -51,7 +51,9 @@ def create_index(
 
     logger.info("paths_to_directories", paths_to_directories)
 
-    text_splitter = RecursiveCharacterTextSplitter()
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500, chunk_overlap=0.5, length_function=len
+    )
 
     all_content = []
     all_vectors = []
@@ -76,7 +78,7 @@ def create_index(
                     content = [x.page_content for x in sentences]
 
                     if len(content) == 0:
-                        logger.warning(f"No content in {file_path}")
+                        logger.info(f"No content in {file_path}")
                         continue
 
                     vectors = embedder.encode(content)
