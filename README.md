@@ -53,9 +53,13 @@ export RAGGLER_DIR=/path/to/your/files
 python raggler.py 'A query for your files' --refresh_index 
 ```
 
-You can also store RAGGLER_DIR in a local .env file.
+You can also store RAGGLER_DIR in a local .env file within the project directory.
 
-The first time you run this, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval. All of that will be stored under `data/`.
+```bash
+echo "RAGGLER_DIR=/path/to/your/files" > .env
+```
+
+The first time you run raggler.py, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval. All of that will be stored under `data/`.
 
 A few pointers:
 
@@ -70,10 +74,10 @@ You can also use Raggler as a library; see the corresponding notebook in `notebo
 
 This is on purpose a very simple system. At the moment it uses small models and is not very sophisticated.
 
-- There is no chat interface to this system currently.
-- Embeddings are vanilla sentence-transformers; there is no fine-tuning or query / instructor embeddings used. Those should be simple to add.
+- There is no chat interface, but nothing is stopping you from building one.
+- Embeddings are from vanilla sentence-transformers; there is no fine-tuning or query / instructor embeddings used.
 - Chunking is done with a recursive splitter.
-- The index is a collection of list indexes and embeddings held in a numpy array (but watch this space for more exotic index methods soon).
+- The index is a collection of list indexes and embeddings held in a numpy array (but watch this space for more exotic index methods soon). There are more scalable ways for index storage and index search (see FAISS).
 
 ## Why build this?
 
