@@ -6,7 +6,7 @@ format:
     ruff format {{SRC_DIR}} {{TESTS}} {{EXAMPLES}}
 
 check: 
-    ruff check {{SRC_DIR}} {{TESTS}} {{EXAMPLES}} --fix
+    ruff check {{SRC_DIR}} {{TESTS}} {{EXAMPLES}} 
 
 test: 
     pytest {{TESTS}} --cov={{SRC_DIR}} --cov-report=term

@@ -6,8 +6,7 @@ from pathlib import Path
 from mlx_lm import generate, load
 from .base_classes.base_classes import BaseLLM
 
-DEFAULT_OPTIONS = {"verbose": True, "max_tokens": 512}
-
+DEFAULT_OPTIONS = {"verbose": False, "max_tokens": 512}
 CACHE_PATH = "data/models"
 
 logger = logging.getLogger(__name__)

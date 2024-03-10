@@ -71,4 +71,4 @@ This is on purpose a very simple system. At the moment it uses very small models
 - [Hugging Face](https://huggingface.co/) for hosting language models and embedders.
 - The [MLX team](https://github.com/ml-explore/mlx) and community for wrapping models nicely and allowing for fast inference on Apple Silicon.
 - Maxime Labonne for creating the [NeuralBeagle](https://huggingface.co/mlabonne/NeuralBeagle14-7B) model which handles the query-answering part of the pipeline.
-- [Chat-with-MLX](https://github.com/qnguyen3/chat-with-mlx) and [MLX-RAG](https://github.com/vegaluisjose/mlx-rag) for inspiration and code snippets.
+- [Chat-with-MLX](https://github.com/qnguyen3/chat-with-mlx) and [MLX-RAG](https://github.com/vegaluisjose/mlx-rag) for inspiration.
