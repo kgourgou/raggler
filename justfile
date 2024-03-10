@@ -12,10 +12,10 @@ test:
     pytest {{TESTS}} --cov={{SRC_DIR}} --cov-report=term
 
 install: 
-    uv pip install pip -U 
-    uv pip install -e . 
+    pip install pip -U 
+    pip install -e . 
 
 install_dev:
-    uv pip install pip -U 
-    uv pip install -e . 
-    uv pip install -r dev_requirements.txt
+    pip install pip -U 
+    pip install -e . 
+    pip install -r dev_requirements.txt
