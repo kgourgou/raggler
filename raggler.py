@@ -16,6 +16,7 @@ def main(
     mlx_llm_name: str = "mlx-community/NeuralBeagle14-7B-4bit-mlx",
     embedder: str = "paraphrase-albert-small-v2",
     refresh_index: bool = False,
+    path_to_files: str = None,
 ):
     """
     Retrieve the most similar documents to the given query.
@@ -35,9 +36,7 @@ def main(
     load_dotenv()
     embedder = SentenceTransformer(embedder)
 
-    path_to_files = os.getenv("RAGGLER_DIR")
-    if path_to_files is None:
-        raise ValueError("RAGGLER_DIR environment variable not set.")
+    path_to_files = path_to_files or os.getenv("RAGGLER_DIR")
 
     default_path_for_index = os.path.join("data/indexes/")
     if os.path.exists(default_path_for_index) and not refresh_index:
