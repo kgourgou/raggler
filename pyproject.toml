@@ -1,0 +1,5 @@
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # imported but unused error
+
+[tool.ruff]
+extend-include = ["*.ipynb"]
