@@ -2,6 +2,7 @@ import numpy as np
 from raggler import RAG, create_index
 from raggler.rag import EXT_TO_LOADER
 from raggler.base_classes.base_classes import BaseIndex, BaseLLM
+from raggler.llm_context import RAG_TEMPLATE
 
 
 class MockEmbedder:
@@ -57,3 +58,8 @@ def test_create_index():
 
 def test_loader():
     assert len(EXT_TO_LOADER) > 0
+
+
+def test_rag_template():
+    assert "{context}" in RAG_TEMPLATE
+    assert "{question}" in RAG_TEMPLATE
