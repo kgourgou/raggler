@@ -7,3 +7,5 @@ tqdm
 langchain
 datasets
 pypdf
+fire
+python-dotenv==1.0.1

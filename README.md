@@ -13,6 +13,8 @@ There is no chat interface to this system, but it should be easy to add one. I m
 
 **The code currently uses MLX language models, so you will need Apple Silicon (M1, M1 Pro, etc.).** However, it should be simple to change the code to use other language models.
 
+Make a virtual environmen first. Then install the package with:
+
 ```bash
 pip install -e . 
 ```
@@ -45,10 +47,12 @@ If you have all of your files in the same directory, do something like this:
 
 ```bash
 export RAGGLER_DIR=/path/to/your/files
-raggler 'A query for your files'
+./raggler.py 'A query for your files'
 ```
 
-The first time you run this, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval.
+You can also store that environment variable in a local .env file.
+
+The first time you run this, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval. All of that will be stored under `data/`.
 
 ### As a library
 
