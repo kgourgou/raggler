@@ -2,18 +2,11 @@
 
 Point this at your files and enjoy some simple RAG (retrieval augmented generation). I mainly build this to help me quickly send questions to my obsidian vault, but it should work for any text files.
 
-Why build this?
-
-1. Most RAG systems are built for large-scale retrieval and generation, but this is a simple, lightweight system that should work well for small-scale retrieval and generation and should be out-of-the-box.
-2. Most RAG systems start with the assumption of access to a SOTA LLM like GPT-4, Claude, etc., but this system uses a simple LLM that is fast and works well on Apple Silicon (7b quantized models for the win).
-
-There is no chat interface to this system, but it should be easy to add one. I mainly use this as a command-line tool and as a library.
-
 ## Installing
 
 **The code currently uses MLX language models, so you will need Apple Silicon (M1, M1 Pro, etc.).** However, it should be simple to change the code to use other language models.
 
-Make a virtual environmen first. Then install the package with:
+Make a virtual environment first. Then install the package with:
 
 ```bash
 pip install -e . 
@@ -47,10 +40,10 @@ If you have all of your files in the same directory, do something like this:
 
 ```bash
 export RAGGLER_DIR=/path/to/your/files
-./raggler.py 'A query for your files'
+python raggler.py 'A query for your files'
 ```
 
-You can also store that environment variable in a local .env file.
+You can also store RAGGLER_DIR in a local .env file.
 
 The first time you run this, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval. All of that will be stored under `data/`.
 
@@ -64,7 +57,15 @@ from raggler import create_index, rag
 
 ## Development
 
-This is on purpose a very simple system. At the moment it uses very small models and is not very sophisticated. However, it should be easy to add more sophisticated models and features for your use-case.
+This is on purpose a very simple system. At the moment it uses very small models and is not very sophisticated.
+
+There is no chat interface to this system, but it should be easy to add one. I mainly use this as a command-line tool and as a library.
+
+## Why build this?
+
+1. Most RAG systems are built for large-scale retrieval and generation, but this is a simple, lightweight system that should work well for small-scale retrieval and generation and should be out-of-the-box.
+
+2. Most RAG systems start with the assumption of access to a SOTA LLM like GPT-4, Claude, etc., and copy-pasting keys, etc. This system uses open-source models by default.
 
 ## Acknowledgements
 

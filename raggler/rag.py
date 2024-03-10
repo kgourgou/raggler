@@ -118,7 +118,9 @@ class RAG:
 
         return distances, list(indices.flatten())
 
-    def __call__(self, query: str, k: int = 2, show_context: bool = False):
+    def __call__(
+        self, query: str, k: int = 2, show_context: bool = False, thr: float = 0.5
+    ):
         """
         Retrieve the most similar documents to the given query,
         concatenate them to a single string, then generate a response
@@ -128,13 +130,20 @@ class RAG:
             query: The query to retrieve and generate a response for.
             k: The number of documents to retrieve.
             show_context: Whether to print the context.
+            thr: The similarity threshold for the retrieved chunks.
 
         Returns:
             str: The response from the language model.
         """
 
-        _, indices = self.retrieve(query, k)
-        context = " ".join([self.index.content[i] for i in indices])
+        distances, indices = self.retrieve(query, k)
+        indices = [ind for ind, dist in zip(indices, distances) if dist > thr]
+
+        if len(indices) == 0:
+            context = "No context found in the index."
+            query = ""
+        else:
+            context = " ".join([self.index.content[i] for i in indices])
 
         if show_context:
             sep = "-" * 100

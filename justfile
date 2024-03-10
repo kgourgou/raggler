@@ -19,3 +19,7 @@ install_dev:
     pip install pip -U 
     pip install -e . 
     pip install -r dev_requirements.txt
+
+clean: 
+    trash .coverage*
+    

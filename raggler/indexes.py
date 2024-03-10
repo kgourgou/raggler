@@ -7,10 +7,8 @@ from raggler.base_classes.base_classes import BaseIndex
 
 class NPIndex(BaseIndex):
     """
-
     Tracking the index and content of documents.
-    Storing embeddings as mlx arrays.
-
+    Storing embeddings as numpy arrays.
     """
 
     def __init__(
@@ -51,11 +49,20 @@ class NPIndex(BaseIndex):
         with open(path_to_index + "content.pk", "rb") as f:
             self.content = pickle.load(f)
 
-    def retrieve(self, query_embedding, k: int):
+    def retrieve(
+        self, query_embedding: np.ndarray, k: int
+    ) -> tuple[np.ndarray, list[int]]:
         """
         Retrieve the most similar documents to the given query.
         Use cosine similarity to compare the query to
             the documents in the index.
+
+        Args:
+            query_embedding: The embedding of the query.
+            k: The number of documents to retrieve.
+
+        Returns:
+            tuple[np.ndarray, np.ndarray]: The distances and indices of the most similar documents.
         """
         if len(query_embedding.shape) == 1:
             # single query
