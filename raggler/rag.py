@@ -52,7 +52,7 @@ def create_index(
     logger.info("paths_to_directories", paths_to_directories)
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500, chunk_overlap=0.5, length_function=len
+        chunk_size=300, chunk_overlap=0.5, length_function=len
     )
 
     all_content = []
