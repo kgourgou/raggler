@@ -1,6 +1,6 @@
 # raggler
 
-Point this at your files and enjoy some simple RAG (retrieval augmented generation). I mainly built this to quickly send questions to my obsidian vault, but it should work for any plain text files / markdown. Raggler will also try to chunk your PDFs.
+Point this at your files and enjoy some simple RAG (retrieval augmented generation). I mainly built this to quickly send questions to my [obsidian](https://obsidian.md/) vault, but it should work for any plain text files / markdown. Raggler will also try to chunk your PDFs.
 
 ## See what this thing can do
 
