@@ -17,6 +17,7 @@ def main(
     embedder: str = "all-MiniLM-L12-v2",
     rfr: bool = False,
     files: str = None,
+    thr: float = 0.0,
 ):
     """
     Retrieve the most similar documents to the given query.
@@ -28,6 +29,10 @@ def main(
         mlx_llm_name: The name of the mlx language model to use.
         embedder: The name of the sentence transformer model to use.
         rfr: Whether to refresh the index. False by default.
+        files: The path to the directory containing the documents to index.
+            This takes precedence over the RAGGLER_DIR environment variable.
+        thr: The similarity threshold for the retrieved chunks.
+            Set it to > 0.0 to filter out chunks with similarity < thr.
 
     Returns:
         str: The response from the language model.
@@ -52,7 +57,7 @@ def main(
         )
 
     rag = RAG(embedder, index, MLXLLM(mlx_llm_name, RAG_TEMPLATE))
-    return rag(query, k=k, show_context=ctx)
+    return rag(query, k=k, show_context=ctx, thr=thr)
 
 
 if __name__ == "__main__":
