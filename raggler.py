@@ -14,7 +14,7 @@ def main(
     k: int = 2,
     ctx: bool = False,
     mlx_llm_name: str = "mlx-community/AlphaMonarch-7B-mlx-4bit",
-    embedder: str = "paraphrase-albert-small-v2",
+    embedder: str = "all-MiniLM-L12-v2",
     rfr: bool = False,
     files: str = None,
 ):
