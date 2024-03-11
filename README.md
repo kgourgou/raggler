@@ -1,6 +1,6 @@
 # raggler
 
-Point this at your files and enjoy some simple RAG (retrieval augmented generation). I mainly buildt this to quickly send questions to my obsidian vault, but it should work for any plain text files / markdown. Raggler will also try to chunk your PDFs.
+Point this at your files and enjoy some simple RAG (retrieval augmented generation). I mainly built this to quickly send questions to my obsidian vault, but it should work for any plain text files / markdown. Raggler will also try to chunk your PDFs.
 
 ## See what this thing can do
 
@@ -10,10 +10,10 @@ Make a virtualenv (optional, but recommended) and then run:
 
 ```bash
 pip install .
-python3 raggler.py 'Give me a geometry problem about planes.' --files "tests/fake_files/" --ctx --rfr
+python3 raggler.py 'Give me a geometry problem and then suggest a variation of it.' --files "tests/fake_files/" --ctx --rfr
 ```
 
-It will take a while to download the LLM, but raggler will store it locally under data/ for future use.
+It will take a while to download the LLM, but it will be cached for future use by the HF library.
 
 ## Installing
 
@@ -60,16 +60,16 @@ You can also store RAGGLER_DIR in a local .env file within the project directory
 echo "RAGGLER_DIR=/path/to/your/files" > .env
 ```
 
-The first time you run raggler.py, it will take a while to index your files. After that, it should be pretty fast as the language-model will be cached locally as a pickle file. Your index will also be saved locally as a pickle file for fast retrieval. All of that will be stored under `data/`.
+The first time you run raggler.py, it will take a while to index your files. Your index will also be saved locally as a pickle file for fast retrieval under `data/`.
 
 A few pointers:
 
-1. You don't need to refresh the index every time, but it also won't happen automatically when the files change.
+1. You don't need to refresh the index every time (except if your files have changed), but it also won't happen automatically when the files change.
 2. You can use the `--show_context` flag to see the context of the answer.
 
 ### As a library
 
-You can also use Raggler as a library; see the corresponding notebook in `notebooks/`.
+You can also use raggler as a library; see `notebooks/`.
 
 ## Development
 
