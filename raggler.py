@@ -20,12 +20,13 @@ def main(
     thr: float = 0.0,
 ):
     """
-    Retrieve the most similar documents to the given query.
+    Retrieve the most similar documents to the given query
+    and generate a response from the language model.
 
     Args:
         query: The query to retrieve and generate a response for.
         k: The number of documents to retrieve.
-        ctx: Whether to print the context.
+        ctx: Whether to print the context found.
         mlx_llm_name: The name of the mlx language model to use.
         embedder: The name of the sentence transformer model to use.
         rfr: Whether to refresh the index. False by default.
