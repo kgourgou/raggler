@@ -77,7 +77,7 @@ This is on purpose a very simple system. At the moment it uses small models and 
 
 - There is no chat interface, but nothing is stopping you from building one.
 - Embeddings are from vanilla sentence-transformers; there is no fine-tuning or query / instructor embeddings used.
-- The index is a collection of list indexes and embeddings held in a numpy array (but watch this space for more exotic index methods soon). There are more scalable ways for index storage and index search (see FAISS).
+- The index is a collection of list indexes and embeddings held in a numpy array (but watch this space for more exotic index methods soon). There are more scalable ways for index storage and index search; adding FAISS should be simple.
 
 ## Why build this?
 
@@ -89,6 +89,6 @@ I've tested it on a 16Gb M1 Pro with a few hundred files and python 3.11 and it 
 
 - All chunking is possible thanks to [LangChain](https://www.langchain.com/).
 - [Hugging Face](https://huggingface.co/) for hosting language models and embedders.
-- The [MLX team](https://github.com/ml-explore/mlx) and community for wrapping models nicely and allowing for fast inference on Apple Silicon.
-- Maxime Labonne for creating the [NeuralBeagle](https://huggingface.co/mlabonne/NeuralBeagle14-7B) model which handles the query-answering part of the pipeline.
+- The [MLX team](https://github.com/ml-explore/mlx) and community for allowing for fast inference on Apple Silicon.
+- Maxime Labonne for creating the [AlphaMonarch](mlabonne/AlphaMonarch-7B) model which handles the query-answering part of the pipeline.
 - [Chat-with-MLX](https://github.com/qnguyen3/chat-with-mlx) and [MLX-RAG](https://github.com/vegaluisjose/mlx-rag) for the inspiration.
