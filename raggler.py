@@ -12,11 +12,11 @@ from dotenv import load_dotenv
 def main(
     query: str,
     k: int = 2,
-    show_context: bool = False,
-    mlx_llm_name: str = "mlx-community/NeuralBeagle14-7B-4bit-mlx",
+    ctx: bool = False,
+    mlx_llm_name: str = "mlx-community/AlphaMonarch-7B-mlx-4bit",
     embedder: str = "paraphrase-albert-small-v2",
-    refresh_index: bool = False,
-    path_to_files: str = None,
+    rfr: bool = False,
+    files: str = None,
 ):
     """
     Retrieve the most similar documents to the given query.
@@ -24,10 +24,10 @@ def main(
     Args:
         query: The query to retrieve and generate a response for.
         k: The number of documents to retrieve.
-        show_context: Whether to print the context.
+        ctx: Whether to print the context.
         mlx_llm_name: The name of the mlx language model to use.
         embedder: The name of the sentence transformer model to use.
-        refresh_index: Whether to refresh the index. False by default.
+        rfr: Whether to refresh the index. False by default.
 
     Returns:
         str: The response from the language model.
@@ -36,24 +36,23 @@ def main(
     load_dotenv()
     embedder = SentenceTransformer(embedder)
 
-    path_to_files = path_to_files or os.getenv("RAGGLER_DIR")
+    files = files or os.getenv("RAGGLER_DIR")
 
     default_path_for_index = os.path.join("data/indexes/")
-    if os.path.exists(default_path_for_index) and not refresh_index:
+    if os.path.exists(default_path_for_index) and not rfr:
         index = NPIndex()
         index.load(default_path_for_index)
     else:
         # create an index
         index = create_index(
-            paths_to_directories=[path_to_files],
+            paths_to_directories=[files],
             embedder=embedder,
             index=NPIndex(),
             path_to_save_index=default_path_for_index,
         )
 
     rag = RAG(embedder, index, MLXLLM(mlx_llm_name, RAG_TEMPLATE))
-    response = rag(query, k=k, show_context=show_context)
-    return response
+    return rag(query, k=k, show_context=ctx)
 
 
 if __name__ == "__main__":

@@ -56,6 +56,17 @@ def test_create_index():
     assert index.content == ["content"]
 
 
+def test_wrong_path():
+    try:
+        create_index(
+            paths_to_directories=["no_such_directory__/"],
+            embedder=MockEmbedder(),
+            index=MockIndex(),
+        )
+    except FileNotFoundError:
+        pass
+
+
 def test_loader():
     assert len(EXT_TO_LOADER) > 0
 

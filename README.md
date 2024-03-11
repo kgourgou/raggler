@@ -9,14 +9,15 @@ Point this at your files and enjoy some simple RAG (retrieval augmented generati
 Make a virtualenv (optional, but recommended) and then run:
 
 ```bash
-pip install -e .
-python3 raggler.py 'Give me a geometry problem about planes.' --path_to_files "tests/fake_files/" --show_contex
-t --refresh_index
+pip install .
+python3 raggler.py 'Give me a geometry problem about planes.' --files "tests/fake_files/" --ctx --rfr
 ```
+
+It will take a while to download the LLM, but raggler will store it locally under data/ for future use.
 
 ## Installing
 
-Make a virtual environment first. Then install the package with:
+Make a virtual environment first. Then install the package in editable mode with:
 
 ```bash
 pip install -e . 
@@ -72,18 +73,17 @@ You can also use Raggler as a library; see the corresponding notebook in `notebo
 
 ## Development
 
-This is on purpose a very simple system. At the moment it uses small models and is not very sophisticated.
+This is on purpose a very simple system. At the moment it uses small models and is not very sophisticated, but most things below are easy to change.
 
 - There is no chat interface, but nothing is stopping you from building one.
 - Embeddings are from vanilla sentence-transformers; there is no fine-tuning or query / instructor embeddings used.
-- Chunking is done with a recursive splitter.
 - The index is a collection of list indexes and embeddings held in a numpy array (but watch this space for more exotic index methods soon). There are more scalable ways for index storage and index search (see FAISS).
 
 ## Why build this?
 
 In the taxonomy of RAG systems, raggler is simple enough that you can write it in a few hours, but it can still process a set of directories and give you a respectable RAG system without having to reach for your API keys.
 
-I've tested it on a 16Gb M1 Macbook Pro with a few hundred files and it works OK.
+I've tested it on a 16Gb M1 Pro with a few hundred files and python 3.11 and it works OK.
 
 ## Acknowledgements
 

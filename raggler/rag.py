@@ -49,10 +49,14 @@ def create_index(
         paths_to_directories, list
     ), "paths_to_directories should be a list"
 
+    for path in paths_to_directories:
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Path '{path}' does not exist.")
+
     logger.info("paths_to_directories", paths_to_directories)
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=200, chunk_overlap=0.5, length_function=len
+        chunk_size=300, chunk_overlap=0.5, length_function=len
     )
 
     all_content = []

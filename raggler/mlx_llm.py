@@ -33,7 +33,7 @@ class MLXLLM(BaseLLM):
         self.model = None
         self.tokenizer = None
 
-        model_path = Path(CACHE_PATH) / model_name
+        model_path = Path(CACHE_PATH) / model_name.split("/")[-1]
         self.load_model_and_tokenizer(model_name, cache_model, model_path)
 
         self.prompt_template = prompt_template if prompt_template else "{text}"
