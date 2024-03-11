@@ -90,5 +90,5 @@ I've tested it on a 16Gb M1 Pro with a few hundred files and python 3.11 and it 
 - All chunking is possible thanks to [LangChain](https://www.langchain.com/).
 - [Hugging Face](https://huggingface.co/) for hosting language models and embedders.
 - The [MLX team](https://github.com/ml-explore/mlx) and community for allowing for fast inference on Apple Silicon.
-- Maxime Labonne for creating the [AlphaMonarch](mlabonne/AlphaMonarch-7B) model which handles the query-answering part of the pipeline.
+- Maxime Labonne for creating the [AlphaMonarch](https://huggingface.co/mlabonne/AlphaMonarch-7B) model which handles the query-answering part of the pipeline.
 - [Chat-with-MLX](https://github.com/qnguyen3/chat-with-mlx) and [MLX-RAG](https://github.com/vegaluisjose/mlx-rag) for the inspiration.
