@@ -6,7 +6,7 @@ Point this at your files and enjoy some simple RAG (retrieval augmented generati
 
 **The code currently uses MLX language models, so you will need Apple Silicon (M1, M1 Pro, etc.).** However, it should be simple to change the code to use other language models.
 
-Make a virtualenv (optional, but recommended) and then run:
+Make a virtualenv (optional, but recommended), clone this repo, navigate to the cloned directory, and then run:
 
 ```bash
 pip install .
@@ -17,7 +17,7 @@ It will take a while to download the LLM, but it will be cached for future use b
 
 ## Installing
 
-Make a virtual environment first. Then install the package in editable mode with:
+Make a virtual environment first. Clone this repo, navigate to the cloned directory, then install the package in editable mode with:
 
 ```bash
 pip install -e . 
