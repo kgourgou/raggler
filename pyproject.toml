@@ -3,3 +3,10 @@
 
 [tool.ruff]
 extend-include = ["*.ipynb"]
+
+[project]
+name = "raggler"
+version = "0.1.0"
+dependencies = [
+    "rank_bm25",
+]

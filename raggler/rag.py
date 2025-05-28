@@ -118,7 +118,7 @@ class RAG:
         Retrieve the most similar documents to the given query.
         """
         query_vector = self.embedder.encode([query])
-        distances, indices = self.index.retrieve(query_vector, k)
+        distances, indices = self.index.retrieve(query_embedding=query_vector, query_text=query, k=k)
 
         return distances, list(indices.flatten())
 
