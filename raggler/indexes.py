@@ -100,4 +100,4 @@ class NPIndex(BaseIndex):
         
         actual_k = min(k, len(combined_scores))
         indices = combined_scores.argsort()[-actual_k:][::-1]  # Sort in descending order
-        return combined_scores[indices], indices
+        return combined_scores[indices], indices.tolist()
